@@ -1,0 +1,46 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #sidenav mode="side" opened class="sidenav-panel">
+        <mat-selection-list #selectedGroupList [multiple]="false" 
+            [(ngModel)]="selectedGroups" (ngModelChange)="groupChanged($event)">
+            <mat-list-option value="{{group}}" *ngFor="let group of groups" [value]="group" >
+                {{ group.name }}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-card class="card-section" *ngIf="selectedGroup">
+            <div *ngIf="selectedGroup">
+                <form #add="ngForm" (ngSubmit)="invite(add)">
+                   <mat-card-title>New User:</mat-card-title>
+                   <mat-form-field appearance="fill" class="form-field">
+                       <mat-label>Display Name:</mat-label>
+                       <input matInput type="text" name="name" 
+                           placeholder="e.g. John Smith" class="input-field" required
+                           [(ngModel)]="invitation.name">
+                   </mat-form-field>
+                   <mat-form-field appearance="fill" class="form-field">
+                       <mat-label>Email:</mat-label>
+                       <input matInput type="email" name="email" placeholder="newuser@example.com" 
+                           class="input-field" required [(ngModel)]="invitation.email">
+                   </mat-form-field>
+                   <mat-form-field appearance="fill" class="form-field">
+                       <mat-label>Tenant ID:</mat-label>
+                       <input matInput type="text" name="groupId" value="{{selectedGroup.id}}" readonly="true" 
+                           class="input-field" required [(ngModel)]="invitation.groupId">
+                   </mat-form-field>
+                   <button mat-raised-button id="submit-button" color="primary" 
+                           type="submit" value="submit" [disabled]="!add.valid">
+                           Invite
+                   </button>
+               </form>
+           </div>
+        </mat-card>
+        <mat-card *ngIf="!selectedGroup" class="card-section">
+            <mat-card-title>Administration Section</mat-card-title>
+            <mat-card-subtitle>Section with administration controls</mat-card-subtitle>
+            <mat-card-content>Select a group to continue!</mat-card-content>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+

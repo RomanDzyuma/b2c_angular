@@ -1,0 +1,42 @@
+.card-section {
+    margin: 10%;
+    padding: 5%;
+  }
+
+.sidenav-container {
+  position: absolute;
+  top: 60px;
+  bottom: 60px;
+  left: 0;
+  right: 0;
+}
+
+.sidenav-panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  background: wheat;
+}
+
+.is-active {
+  background-color: orange;
+}
+
+.form-field {
+  min-width: 100px;
+  width: 90%;
+}
+
+.input-field {
+  width: 90%;
+}
+
+#submit-button {
+  margin-left: 1%;
+}
+
+.material-icons:hover {
+  color: orange !important;
+  cursor: pointer
+}
